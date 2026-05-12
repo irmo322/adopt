@@ -127,7 +127,7 @@ class ADOPT(Optimizer):
     ):
         has_complex = False
         for p in group["params"]:
-            if p.grad is not None:
+            if p.grad is not None and p.grad.any():
                 has_complex |= torch.is_complex(p)
                 params_with_grad.append(p)
                 if p.grad.is_sparse:
